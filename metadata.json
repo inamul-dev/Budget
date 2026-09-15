@@ -1,0 +1,8 @@
+{
+  "name": "Remix BudgetPal - AI Finance \u0026 Life Expense Tracker",
+  "description": "Intuitive personal finance tracker with AI budget advisor, category limits, monthly/yearly/life expense projections, bank syncing, and dual currency (INR/USD) support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
