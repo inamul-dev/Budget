@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, X, ArrowDownRight, ArrowUpRight } from 'lucide-react';
+import { Plus, X, ArrowDownRight, ArrowUpRight, Calendar, BarChart3, CheckCircle2 } from 'lucide-react';
 import { BankAccount, Category, CategoryLimit, Currency, Transaction } from '../types';
 import { USD_TO_INR } from '../data/initialData';
 
@@ -107,7 +107,7 @@ export const AddTransactionModal: React.FC<AddTransactionModalProps> = ({
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              <span>📅</span>
+              <Calendar className="w-3.5 h-3.5 text-emerald-600" />
               <span>Monthly Tracker</span>
             </button>
             <button
@@ -115,18 +115,21 @@ export const AddTransactionModal: React.FC<AddTransactionModalProps> = ({
               onClick={() => setTrackerMode('yearly')}
               className={`py-2 px-3 text-xs font-bold rounded-lg transition flex items-center justify-center gap-1.5 cursor-pointer ${
                 trackerMode === 'yearly'
-                  ? 'bg-white text-emerald-800 shadow-xs border border-slate-200'
+                  ? 'bg-white text-blue-800 shadow-xs border border-slate-200'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              <span>📊</span>
+              <BarChart3 className="w-3.5 h-3.5 text-blue-600" />
               <span>Yearly Tracker</span>
             </button>
           </div>
-          <p className="text-[11px] text-slate-700 mt-1">
-            {trackerMode === 'monthly'
-              ? '✅ Stored strictly in your Monthly Tracker. Does not affect Yearly or Life.'
-              : '✅ Stored strictly in your Yearly Tracker. Does not affect Monthly or Life.'}
+          <p className="text-[11px] text-slate-600 mt-1 flex items-center gap-1">
+            <CheckCircle2 className="w-3 h-3 text-emerald-600 shrink-0" />
+            <span>
+              {trackerMode === 'monthly'
+                ? 'Stored strictly in Monthly Tracker. Does not impact Yearly or Life models.'
+                : 'Stored strictly in Yearly Tracker. Does not impact Monthly or Life models.'}
+            </span>
           </p>
         </div>
 
@@ -226,7 +229,7 @@ export const AddTransactionModal: React.FC<AddTransactionModalProps> = ({
               >
                 {categoryLimits.map((c) => (
                   <option key={c.category} value={c.category}>
-                    {c.emoji} {c.category}
+                    {c.category}
                   </option>
                 ))}
               </select>
@@ -244,10 +247,10 @@ export const AddTransactionModal: React.FC<AddTransactionModalProps> = ({
             >
               {bankAccounts.map((b) => (
                 <option key={b.id} value={b.name}>
-                  {b.bankLogo} {b.name} ({b.accountNumber})
+                  {b.name} ({b.accountNumber})
                 </option>
               ))}
-              <option value="Cash / Pocket Money">💵 Cash / Pocket Money</option>
+              <option value="Cash / Pocket Money">Cash / Physical Wallet</option>
             </select>
           </div>
 

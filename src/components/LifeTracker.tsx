@@ -12,10 +12,14 @@ import {
   Award,
   Zap,
   RotateCcw,
+  Trophy,
+  ReceiptText,
+  Clock,
 } from 'lucide-react';
 import { Currency, LifeBaseline, LifeMilestone, Transaction } from '../types';
 import { INITIAL_LIFE_MILESTONES, USD_TO_INR } from '../data/initialData';
 import { formatCurrency, getConvertedAmount } from '../utils/formatters';
+import { MilestoneIcon } from './CategoryIcon';
 
 interface LifeTrackerProps {
   baseline: LifeBaseline;
@@ -23,7 +27,7 @@ interface LifeTrackerProps {
   milestones: LifeMilestone[];
   onUpdateMilestones: (newMilestones: LifeMilestone[]) => void;
   currency: Currency;
-  onOpenAI: (mode?: 'afford' | 'review') => void;
+  onOpenAI: (mode?: 'chat' | 'afford' | 'review') => void;
   onOpenReset?: () => void;
   onUndoReset?: () => void;
   hasUndoBackup?: boolean;
@@ -62,7 +66,7 @@ export const LifeTracker: React.FC<LifeTrackerProps> = ({
   const [newTitle, setNewTitle] = useState('');
   const [newYears, setNewYears] = useState<number>(5);
   const [newAmount, setNewAmount] = useState<string>('500000');
-  const [newEmoji, setNewEmoji] = useState('🎯');
+  const [newEmoji, setNewEmoji] = useState('ShieldCheck');
 
   // Compute baseline monthly income and expense from independent life baseline
   const baselineMonthly = useMemo(() => {
@@ -211,7 +215,7 @@ export const LifeTracker: React.FC<LifeTrackerProps> = ({
       >
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-xl bg-purple-600 text-white flex items-center justify-center font-bold text-base shadow-xs shrink-0">
-            🌱
+            <Compass className="w-5 h-5 text-white" />
           </div>
           <div>
             <h3 className="text-sm font-black text-purple-950 font-outfit flex items-center gap-2">
@@ -271,11 +275,11 @@ export const LifeTracker: React.FC<LifeTrackerProps> = ({
             <button
               id="btn-life-ask-ai"
               type="button"
-              onClick={() => onOpenAI('review')}
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-purple-500 hover:bg-purple-400 text-white text-xs sm:text-sm font-bold shadow-lg shadow-purple-500/25 transition cursor-pointer"
+              onClick={() => onOpenAI('chat')}
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold shadow-md shadow-indigo-500/20 transition cursor-pointer"
             >
-              <Sparkles className="w-4 h-4 text-amber-300" />
-              <span>AI Life Coaching</span>
+              <Sparkles className="w-4 h-4 text-indigo-200" />
+              <span>AI Wealth Advisor</span>
             </button>
           </div>
         </div>
@@ -473,9 +477,11 @@ export const LifeTracker: React.FC<LifeTrackerProps> = ({
         >
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-emerald-800 uppercase tracking-wider">
-              1. Projected Lifetime Wealth
+              Projected Lifetime Wealth
             </span>
-            <span className="text-2xl">🏆</span>
+            <div className="p-1.5 rounded-xl bg-emerald-50 text-emerald-600">
+              <Trophy className="w-5 h-5" />
+            </div>
           </div>
           <div className="mt-2">
             <span className="text-2xl sm:text-3xl font-black text-emerald-700 font-outfit">
@@ -490,7 +496,7 @@ export const LifeTracker: React.FC<LifeTrackerProps> = ({
             <span>
               {formatCurrency(finalYearData.investedWealth - finalYearData.cashSavings, currency)}
             </span>
-            <span>from compound interest!</span>
+            <span>from compound interest</span>
           </div>
         </div>
 
@@ -501,9 +507,11 @@ export const LifeTracker: React.FC<LifeTrackerProps> = ({
         >
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-              2. Total Lifetime Expenses
+              Total Lifetime Expenses
             </span>
-            <span className="text-2xl">💸</span>
+            <div className="p-1.5 rounded-xl bg-slate-50 text-slate-600">
+              <ReceiptText className="w-5 h-5" />
+            </div>
           </div>
           <div className="mt-2">
             <span className="text-2xl sm:text-3xl font-black text-slate-900 font-outfit">
@@ -522,9 +530,11 @@ export const LifeTracker: React.FC<LifeTrackerProps> = ({
         >
           <div className="flex items-center justify-between">
             <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-              3. Financial Freedom Status
+              Financial Freedom Status
             </span>
-            <span className="text-2xl">🌱</span>
+            <div className="p-1.5 rounded-xl bg-indigo-50 text-indigo-600">
+              <Compass className="w-5 h-5" />
+            </div>
           </div>
           <div className="mt-2">
             <span
@@ -535,8 +545,8 @@ export const LifeTracker: React.FC<LifeTrackerProps> = ({
               }`}
             >
               {finalYearData.investedWealth >= finalYearData.cumulativeExpenses * 0.5
-                ? 'Super Independent!'
-                : 'Building Momentum'}
+                ? 'Financial Independence Achieved'
+                : 'Accumulation Phase'}
             </span>
           </div>
           <p className="mt-1 text-xs text-slate-700">
@@ -685,11 +695,11 @@ export const LifeTracker: React.FC<LifeTrackerProps> = ({
             <span>₹0 / $0</span>
             <span>
               {extraMonthlySave > 0
-                ? `🎉 In ${lifeSpanYears} years, this small habit creates an extra ${formatCurrency(
+                ? `In ${lifeSpanYears} years, this habit generates an additional ${formatCurrency(
                     ((extraMonthlySave * 12) * ((Math.pow(1 + returnRate / 100, lifeSpanYears) - 1) / (returnRate / 100))),
                     currency
-                  )}!`
-                : 'Slide right to add an extra monthly saving boost!'}
+                  )}`
+                : 'Slide right to add an extra monthly saving boost'}
             </span>
             <span>{formatCurrency(currency === 'INR' ? 10000 : 150, currency)}</span>
           </div>
@@ -739,9 +749,9 @@ export const LifeTracker: React.FC<LifeTrackerProps> = ({
               >
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-2.5">
-                    <span className="text-2xl p-2 bg-slate-50 rounded-xl border border-slate-100">
-                      {m.emoji}
-                    </span>
+                    <div className="p-2.5 bg-indigo-50/70 text-indigo-700 rounded-xl border border-indigo-100/60 shrink-0">
+                      <MilestoneIcon iconKey={m.emoji || m.category} size="md" />
+                    </div>
                     <div>
                       <h4 className="text-sm font-bold text-slate-900 leading-tight">
                         {m.title}
@@ -759,7 +769,17 @@ export const LifeTracker: React.FC<LifeTrackerProps> = ({
                         : 'bg-amber-100 text-amber-800'
                     }`}
                   >
-                    {isAchievable ? '✅ On Track' : '⏳ In Progress'}
+                    {isAchievable ? (
+                      <span className="inline-flex items-center gap-1 text-emerald-800">
+                        <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                        <span>On Track</span>
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1 text-amber-800">
+                        <Clock className="w-3 h-3 text-amber-600" />
+                        <span>In Progress</span>
+                      </span>
+                    )}
                   </span>
                 </div>
 
@@ -845,21 +865,21 @@ export const LifeTracker: React.FC<LifeTrackerProps> = ({
 
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">
-                    Emoji Icon
+                    Goal Category
                   </label>
                   <select
                     value={newEmoji}
                     onChange={(e) => setNewEmoji(e.target.value)}
-                    className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 bg-white"
+                    className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 bg-white text-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   >
-                    <option value="🎯">🎯 Goal</option>
-                    <option value="🏡">🏡 House</option>
-                    <option value="✈️">✈️ Travel</option>
-                    <option value="🚗">🚗 Vehicle</option>
-                    <option value="🎓">🎓 College</option>
-                    <option value="💍">💍 Wedding</option>
-                    <option value="👶">👶 Baby</option>
-                    <option value="🌴">🌴 Freedom</option>
+                    <option value="ShieldCheck">Safety / Emergency Fund</option>
+                    <option value="Home">Real Estate / Home</option>
+                    <option value="Plane">Travel & Vacation</option>
+                    <option value="Car">Vehicle Purchase</option>
+                    <option value="GraduationCap">Higher Education</option>
+                    <option value="Gem">Wedding & Celebration</option>
+                    <option value="Baby">Family & Childcare</option>
+                    <option value="Compass">Financial Freedom / Retirement</option>
                   </select>
                 </div>
               </div>

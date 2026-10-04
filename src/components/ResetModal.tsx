@@ -10,6 +10,8 @@ import {
   Sliders,
   Calendar,
   Layers,
+  BarChart3,
+  Compass,
 } from 'lucide-react';
 import { CategoryLimit, Currency, Transaction } from '../types';
 import { formatCurrency } from '../utils/formatters';
@@ -198,21 +200,30 @@ export const ResetModal: React.FC<ResetModalProps> = ({
             </span>
             <div className="grid grid-cols-3 gap-2 text-center">
               <div className="bg-white p-2.5 rounded-xl border border-slate-200">
-                <span className="text-[11px] text-slate-700 font-bold block">📅 Monthly</span>
-                <span className="text-sm font-black text-slate-900 font-outfit">
+                <span className="text-[11px] text-slate-700 font-bold flex items-center justify-center gap-1">
+                  <Calendar className="w-3 h-3 text-emerald-600" />
+                  <span>Monthly</span>
+                </span>
+                <span className="text-sm font-black text-slate-900 font-outfit mt-0.5 block">
                   {monthlyTransactionsCount} items
                 </span>
               </div>
               <div className="bg-white p-2.5 rounded-xl border border-slate-200">
-                <span className="text-[11px] text-slate-700 font-bold block">📊 Yearly</span>
-                <span className="text-sm font-black text-slate-900 font-outfit">
+                <span className="text-[11px] text-slate-700 font-bold flex items-center justify-center gap-1">
+                  <BarChart3 className="w-3 h-3 text-blue-600" />
+                  <span>Yearly</span>
+                </span>
+                <span className="text-sm font-black text-slate-900 font-outfit mt-0.5 block">
                   {yearlyTransactionsCount} items
                 </span>
               </div>
               <div className="bg-white p-2.5 rounded-xl border border-slate-200">
-                <span className="text-[11px] text-slate-700 font-bold block">🌱 Life</span>
-                <span className="text-sm font-black text-slate-900 font-outfit">
-                  Baseline Setup
+                <span className="text-[11px] text-slate-700 font-bold flex items-center justify-center gap-1">
+                  <Compass className="w-3 h-3 text-purple-600" />
+                  <span>Life</span>
+                </span>
+                <span className="text-sm font-black text-slate-900 font-outfit mt-0.5 block">
+                  Baseline
                 </span>
               </div>
             </div>

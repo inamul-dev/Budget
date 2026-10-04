@@ -13,6 +13,7 @@ import {
 import { BankAccount, Currency, Transaction } from '../types';
 import { formatCurrency } from '../utils/formatters';
 import { SAMPLE_SIMULATED_FEED_TRANSACTIONS } from '../data/initialData';
+import { BankIcon } from './CategoryIcon';
 
 interface BankSyncModalProps {
   isOpen: boolean;
@@ -66,7 +67,7 @@ export const BankSyncModal: React.FC<BankSyncModalProps> = ({
 
         onSyncAccounts();
         setIsSyncing(false);
-        setSyncStatusMsg('✅ 2 new transactions auto-fetched and balances refreshed!');
+        setSyncStatusMsg('2 new transactions auto-fetched and balances refreshed successfully.');
         setTimeout(() => setSyncStatusMsg(null), 4000);
       }, 1200);
     }, 1000);
@@ -83,7 +84,7 @@ export const BankSyncModal: React.FC<BankSyncModalProps> = ({
       accountNumber: `•••• ${accountNumber.slice(-4) || '1234'}`,
       balanceINR: isINR ? balNum : balNum * 85,
       balanceUSD: isINR ? balNum / 85 : balNum,
-      bankLogo: '🏦',
+      bankLogo: 'building',
       color: 'from-emerald-700 to-teal-800',
       lastSynced: 'Just now',
       status: 'synced',
@@ -271,9 +272,9 @@ export const BankSyncModal: React.FC<BankSyncModalProps> = ({
                   className="flex items-center justify-between p-3 rounded-xl border border-slate-200 bg-white hover:border-slate-300 transition"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="text-2xl p-1.5 bg-slate-100 rounded-xl">
-                      {account.bankLogo}
-                    </span>
+                    <div className="p-2 bg-blue-50 text-blue-700 rounded-xl border border-blue-100 shrink-0">
+                      <BankIcon logoKey={account.bankLogo || account.name} size="md" />
+                    </div>
                     <div>
                       <h4 className="text-xs font-bold text-slate-900">
                         {account.name}

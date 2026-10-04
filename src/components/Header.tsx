@@ -15,6 +15,9 @@ import {
   Github,
   Apple,
   Mail,
+  Calendar,
+  BarChart3,
+  Compass,
 } from 'lucide-react';
 import { Currency, AuthUser } from '../types';
 
@@ -23,7 +26,7 @@ interface HeaderProps {
   setActiveTab: (tab: 'monthly' | 'yearly' | 'life') => void;
   currency: Currency;
   setCurrency: (c: Currency) => void;
-  onOpenAI: (mode?: 'afford' | 'review' | 'paste') => void;
+  onOpenAI: (mode?: 'chat' | 'afford' | 'review' | 'paste') => void;
   onOpenBankSync: () => void;
   onOpenExport: () => void;
   onOpenAddTransaction: () => void;
@@ -120,12 +123,12 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               id="btn-open-ai-friend"
               type="button"
-              onClick={() => onOpenAI('afford')}
-              className="relative inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-bold bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md shadow-purple-500/25 hover:from-purple-700 hover:to-indigo-700 transition cursor-pointer"
+              onClick={() => onOpenAI('chat')}
+              className="relative inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs sm:text-sm font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm transition cursor-pointer"
             >
-              <Sparkles className="w-4 h-4 animate-pulse text-amber-300" />
-              <span className="hidden sm:inline">Ask AI Friend</span>
-              <span className="sm:hidden">AI</span>
+              <Sparkles className="w-4 h-4 text-indigo-200" />
+              <span className="hidden sm:inline">AI Financial Advisor</span>
+              <span className="sm:hidden">AI Advisor</span>
               {hasOverage && (
                 <span className="w-2 h-2 rounded-full bg-amber-400 absolute -top-0.5 -right-0.5 ring-2 ring-white" />
               )}
@@ -263,10 +266,10 @@ export const Header: React.FC<HeaderProps> = ({
                 : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
-            <span className="text-base">📅</span>
-            <span>1. Monthly Tracker</span>
-            <span className="px-1.5 py-0.2 bg-emerald-100/70 text-emerald-700 rounded-md text-[10px] font-semibold">
-              Monthly Only
+            <Calendar className="w-4 h-4 text-emerald-600" />
+            <span>Monthly Tracker</span>
+            <span className="px-1.5 py-0.5 bg-emerald-100/70 text-emerald-800 rounded text-[10px] font-semibold">
+              Monthly
             </span>
             {hasOverage && (
               <span className="px-1.5 py-0.5 bg-amber-100 text-amber-800 rounded-full text-[10px] font-extrabold animate-pulse">
@@ -285,10 +288,10 @@ export const Header: React.FC<HeaderProps> = ({
                 : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
-            <span className="text-base">📊</span>
-            <span>2. Yearly Tracker</span>
-            <span className="px-1.5 py-0.2 bg-blue-100/70 text-blue-700 rounded-md text-[10px] font-semibold">
-              Yearly Only
+            <BarChart3 className="w-4 h-4 text-blue-600" />
+            <span>Yearly Tracker</span>
+            <span className="px-1.5 py-0.5 bg-blue-100/70 text-blue-800 rounded text-[10px] font-semibold">
+              Annual
             </span>
           </button>
 
@@ -302,10 +305,10 @@ export const Header: React.FC<HeaderProps> = ({
                 : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
             }`}
           >
-            <span className="text-base">🌱</span>
-            <span>3. Life Tracker (1-60 Yrs)</span>
-            <span className="px-1.5 py-0.2 bg-purple-100 text-purple-700 rounded-md text-[10px] font-semibold">
-              Independent Plan
+            <Compass className="w-4 h-4 text-purple-600" />
+            <span>Life Roadmap (1-60 Yrs)</span>
+            <span className="px-1.5 py-0.5 bg-purple-100 text-purple-800 rounded text-[10px] font-semibold">
+              Long-term
             </span>
           </button>
         </div>

@@ -136,7 +136,10 @@ export default function App() {
       if (saved && saved !== 'undefined' && saved !== 'null') {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed)) {
-          return parsed;
+          return parsed.map((item: any) => ({
+            ...item,
+            emoji: item.emoji && item.emoji.length > 2 ? item.emoji : 'Target',
+          }));
         }
       }
     } catch (e) {
@@ -152,7 +155,10 @@ export default function App() {
       if (saved && saved !== 'undefined' && saved !== 'null') {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
+          return parsed.map((item: any) => ({
+            ...item,
+            emoji: '',
+          }));
         }
       }
     } catch (e) {
@@ -168,7 +174,10 @@ export default function App() {
       if (saved && saved !== 'undefined' && saved !== 'null') {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          return parsed;
+          return parsed.map((item: any) => ({
+            ...item,
+            bankLogo: item.bankLogo && item.bankLogo.length > 2 ? item.bankLogo : 'building',
+          }));
         }
       }
     } catch (e) {
@@ -179,7 +188,7 @@ export default function App() {
 
   // Modals state
   const [isAIOpen, setIsAIOpen] = useState(false);
-  const [aiMode, setAiMode] = useState<'afford' | 'review' | 'paste'>('afford');
+  const [aiMode, setAiMode] = useState<'chat' | 'afford' | 'review' | 'paste'>('chat');
   const [isBankSyncOpen, setIsBankSyncOpen] = useState(false);
   const [isExportOpen, setIsExportOpen] = useState(false);
   const [isAddTxOpen, setIsAddTxOpen] = useState(false);
@@ -366,7 +375,7 @@ export default function App() {
   };
 
   // Open AI modal with mode
-  const handleOpenAI = (mode: 'afford' | 'review' | 'paste' = 'afford') => {
+  const handleOpenAI = (mode: 'chat' | 'afford' | 'review' | 'paste' = 'chat') => {
     setAiMode(mode);
     setIsAIOpen(true);
   };
@@ -707,10 +716,14 @@ export default function App() {
         isOpen={isAIOpen}
         onClose={() => setIsAIOpen(false)}
         currency={currency}
+        onCurrencyChange={setCurrency}
         categoryLimits={categoryLimits}
         transactions={activeTab === 'yearly' ? safeYearly : safeMonthly}
         initialMode={aiMode}
         trackerType={activeTab}
+        bankAccounts={bankAccounts}
+        lifeMilestones={lifeMilestones}
+        monthlyIncome={currentUser?.monthlyIncome}
         onAddTransaction={handleAddTransaction}
       />
 

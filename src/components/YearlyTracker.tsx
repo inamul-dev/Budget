@@ -19,15 +19,17 @@ import {
   AlertTriangle,
   Undo2,
   Filter,
+  Info,
 } from 'lucide-react';
 import { Category, CategoryLimit, Currency, Transaction } from '../types';
 import { formatCurrency, getConvertedAmount } from '../utils/formatters';
+import { CategoryIcon } from './CategoryIcon';
 
 interface YearlyTrackerProps {
   transactions: Transaction[];
   categoryLimits: CategoryLimit[];
   currency: Currency;
-  onOpenAI: (mode: 'review') => void;
+  onOpenAI: (mode: 'chat' | 'review') => void;
   onUpdateLimit?: (category: Category, newLimit: number) => void;
   onDeleteTransaction?: (id: string) => void;
   onOpenAddTransaction?: (preselectedCategory?: Category) => void;
@@ -201,7 +203,7 @@ export const YearlyTracker: React.FC<YearlyTrackerProps> = ({
       >
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-base shadow-xs shrink-0">
-            📊
+            <BarChart3 className="w-5 h-5 text-white" />
           </div>
           <div>
             <h3 className="text-sm font-black text-blue-950 font-outfit flex items-center gap-2">
@@ -294,12 +296,12 @@ export const YearlyTracker: React.FC<YearlyTrackerProps> = ({
           <button
             id="btn-yearly-ai-review"
             type="button"
-            onClick={() => onOpenAI('review')}
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-200 transition cursor-pointer"
+            onClick={() => onOpenAI('chat')}
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 transition cursor-pointer"
           >
-            <Sparkles className="w-4 h-4 text-purple-600" />
-            <span className="hidden sm:inline">Ask AI Annual Review</span>
-            <span className="sm:hidden">AI Review</span>
+            <Sparkles className="w-4 h-4 text-indigo-600" />
+            <span className="hidden sm:inline">AI Financial Advisor</span>
+            <span className="sm:hidden">AI Advisor</span>
           </button>
         </div>
       </div>
@@ -487,8 +489,9 @@ export const YearlyTracker: React.FC<YearlyTrackerProps> = ({
           })}
         </div>
 
-        <div className="text-center text-xs text-slate-700 pt-1">
-          💡 Hover over any month to view exact yearly income, expenses, and net savings.
+        <div className="flex items-center justify-center gap-1.5 text-xs text-slate-500 pt-1">
+          <Info className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+          <span>Hover over any month to view exact yearly income, expenses, and net savings.</span>
         </div>
       </div>
 
@@ -519,7 +522,7 @@ export const YearlyTracker: React.FC<YearlyTrackerProps> = ({
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className="text-lg">{cat.emoji}</span>
+                  <CategoryIcon category={cat.category} color={cat.color} size="xs" showBackground />
                   <span className="text-xs font-bold text-slate-900">{cat.category}</span>
                 </div>
                 {onUpdateLimit && (
@@ -635,8 +638,8 @@ export const YearlyTracker: React.FC<YearlyTrackerProps> = ({
 
         {filteredLedger.length === 0 ? (
           <div className="text-center py-12 px-4 border border-dashed border-slate-200 rounded-2xl bg-slate-50/50 space-y-3">
-            <div className="w-12 h-12 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center mx-auto text-xl">
-              📊
+            <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto">
+              <BarChart3 className="w-6 h-6 stroke-[1.5]" />
             </div>
             <div className="space-y-1">
               <h4 className="text-sm font-bold text-slate-800">
@@ -671,12 +674,7 @@ export const YearlyTracker: React.FC<YearlyTrackerProps> = ({
                   className="p-3.5 bg-white hover:bg-slate-50/70 flex items-center justify-between gap-3 transition"
                 >
                   <div className="flex items-center gap-3 min-w-0">
-                    <div
-                      style={{ backgroundColor: `${catObj?.color || '#3B82F6'}20` }}
-                      className="w-10 h-10 rounded-xl flex items-center justify-center text-lg shrink-0"
-                    >
-                      {catObj?.emoji || '📦'}
-                    </div>
+                    <CategoryIcon category={tx.category} color={catObj?.color} size="md" showBackground />
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
                         <span className="text-xs font-bold text-slate-900 truncate">

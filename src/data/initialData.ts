@@ -9,7 +9,7 @@ export const DEFAULT_CATEGORY_LIMITS: CategoryLimit[] = [
     limitUSD: 220,
     color: '#F97316', // Orange
     iconName: 'Utensils',
-    emoji: '🍕',
+    emoji: '',
   },
   {
     category: 'Housing & Rent',
@@ -17,7 +17,7 @@ export const DEFAULT_CATEGORY_LIMITS: CategoryLimit[] = [
     limitUSD: 420,
     color: '#3B82F6', // Blue
     iconName: 'Home',
-    emoji: '🏠',
+    emoji: '',
   },
   {
     category: 'Shopping',
@@ -25,7 +25,7 @@ export const DEFAULT_CATEGORY_LIMITS: CategoryLimit[] = [
     limitUSD: 150,
     color: '#EC4899', // Pink
     iconName: 'ShoppingBag',
-    emoji: '🛍️',
+    emoji: '',
   },
   {
     category: 'Transportation',
@@ -33,7 +33,7 @@ export const DEFAULT_CATEGORY_LIMITS: CategoryLimit[] = [
     limitUSD: 75,
     color: '#EAB308', // Yellow
     iconName: 'Car',
-    emoji: '🚗',
+    emoji: '',
   },
   {
     category: 'Entertainment',
@@ -41,7 +41,7 @@ export const DEFAULT_CATEGORY_LIMITS: CategoryLimit[] = [
     limitUSD: 60,
     color: '#8B5CF6', // Purple
     iconName: 'Film',
-    emoji: '🎮',
+    emoji: '',
   },
   {
     category: 'Bills & Utilities',
@@ -49,7 +49,7 @@ export const DEFAULT_CATEGORY_LIMITS: CategoryLimit[] = [
     limitUSD: 85,
     color: '#06B6D4', // Cyan
     iconName: 'Zap',
-    emoji: '⚡',
+    emoji: '',
   },
   {
     category: 'Health & Medical',
@@ -57,7 +57,7 @@ export const DEFAULT_CATEGORY_LIMITS: CategoryLimit[] = [
     limitUSD: 50,
     color: '#10B981', // Emerald
     iconName: 'HeartPulse',
-    emoji: '💊',
+    emoji: '',
   },
   {
     category: 'Education',
@@ -65,15 +65,15 @@ export const DEFAULT_CATEGORY_LIMITS: CategoryLimit[] = [
     limitUSD: 60,
     color: '#6366F1', // Indigo
     iconName: 'GraduationCap',
-    emoji: '📚',
+    emoji: '',
   },
   {
     category: 'Other',
     limitINR: 4000,
     limitUSD: 50,
     color: '#64748B', // Slate
-    iconName: 'MoreHorizontal',
-    emoji: '📦',
+    iconName: 'Package',
+    emoji: '',
   },
 ];
 
@@ -84,7 +84,7 @@ export const DEFAULT_YEARLY_CATEGORY_LIMITS: CategoryLimit[] = [
     limitUSD: 2640,
     color: '#F97316',
     iconName: 'Utensils',
-    emoji: '🍕',
+    emoji: '',
   },
   {
     category: 'Housing & Rent',
@@ -92,7 +92,7 @@ export const DEFAULT_YEARLY_CATEGORY_LIMITS: CategoryLimit[] = [
     limitUSD: 5040,
     color: '#3B82F6',
     iconName: 'Home',
-    emoji: '🏠',
+    emoji: '',
   },
   {
     category: 'Shopping',
@@ -100,7 +100,7 @@ export const DEFAULT_YEARLY_CATEGORY_LIMITS: CategoryLimit[] = [
     limitUSD: 1800,
     color: '#EC4899',
     iconName: 'ShoppingBag',
-    emoji: '🛍️',
+    emoji: '',
   },
   {
     category: 'Transportation',
@@ -108,7 +108,7 @@ export const DEFAULT_YEARLY_CATEGORY_LIMITS: CategoryLimit[] = [
     limitUSD: 900,
     color: '#EAB308',
     iconName: 'Car',
-    emoji: '🚗',
+    emoji: '',
   },
   {
     category: 'Entertainment',
@@ -116,7 +116,7 @@ export const DEFAULT_YEARLY_CATEGORY_LIMITS: CategoryLimit[] = [
     limitUSD: 720,
     color: '#8B5CF6',
     iconName: 'Film',
-    emoji: '🎮',
+    emoji: '',
   },
   {
     category: 'Bills & Utilities',
@@ -124,7 +124,7 @@ export const DEFAULT_YEARLY_CATEGORY_LIMITS: CategoryLimit[] = [
     limitUSD: 1020,
     color: '#06B6D4',
     iconName: 'Zap',
-    emoji: '⚡',
+    emoji: '',
   },
   {
     category: 'Health & Medical',
@@ -132,7 +132,7 @@ export const DEFAULT_YEARLY_CATEGORY_LIMITS: CategoryLimit[] = [
     limitUSD: 600,
     color: '#10B981',
     iconName: 'HeartPulse',
-    emoji: '💊',
+    emoji: '',
   },
   {
     category: 'Education',
@@ -140,15 +140,15 @@ export const DEFAULT_YEARLY_CATEGORY_LIMITS: CategoryLimit[] = [
     limitUSD: 720,
     color: '#6366F1',
     iconName: 'GraduationCap',
-    emoji: '📚',
+    emoji: '',
   },
   {
     category: 'Other',
     limitINR: 48000,
     limitUSD: 600,
     color: '#64748B',
-    iconName: 'MoreHorizontal',
-    emoji: '📦',
+    iconName: 'Package',
+    emoji: '',
   },
 ];
 
@@ -159,7 +159,7 @@ export const INITIAL_BANK_ACCOUNTS: BankAccount[] = [
     accountNumber: '•••• 4920',
     balanceINR: 145000,
     balanceUSD: 1705,
-    bankLogo: '🏦',
+    bankLogo: 'building',
     color: 'from-blue-600 to-indigo-700',
     lastSynced: 'Just now',
     status: 'synced',
@@ -170,7 +170,7 @@ export const INITIAL_BANK_ACCOUNTS: BankAccount[] = [
     accountNumber: '•••• 8112',
     balanceINR: 238000,
     balanceUSD: 2800,
-    bankLogo: '💳',
+    bankLogo: 'card',
     color: 'from-sky-700 to-blue-900',
     lastSynced: '10 mins ago',
     status: 'synced',
@@ -181,7 +181,7 @@ export const INITIAL_BANK_ACCOUNTS: BankAccount[] = [
     accountNumber: '•••• 3309',
     balanceINR: 82000,
     balanceUSD: 965,
-    bankLogo: '🏛️',
+    bankLogo: 'landmark',
     color: 'from-cyan-600 to-teal-700',
     lastSynced: 'Yesterday',
     status: 'synced',
@@ -196,7 +196,7 @@ export const INITIAL_LIFE_MILESTONES: LifeMilestone[] = [
     targetAmountINR: 350000,
     targetAmountUSD: 4100,
     category: 'Safety',
-    emoji: '🛡️',
+    emoji: 'ShieldCheck',
   },
   {
     id: 'milestone-2',
@@ -205,7 +205,7 @@ export const INITIAL_LIFE_MILESTONES: LifeMilestone[] = [
     targetAmountINR: 450000,
     targetAmountUSD: 5300,
     category: 'Lifestyle',
-    emoji: '✈️',
+    emoji: 'Plane',
   },
   {
     id: 'milestone-3',
@@ -214,7 +214,7 @@ export const INITIAL_LIFE_MILESTONES: LifeMilestone[] = [
     targetAmountINR: 1200000,
     targetAmountUSD: 14100,
     category: 'Asset',
-    emoji: '🚙',
+    emoji: 'Car',
   },
   {
     id: 'milestone-4',
@@ -223,7 +223,7 @@ export const INITIAL_LIFE_MILESTONES: LifeMilestone[] = [
     targetAmountINR: 3500000,
     targetAmountUSD: 41200,
     category: 'Real Estate',
-    emoji: '🏡',
+    emoji: 'Home',
   },
   {
     id: 'milestone-5',
@@ -232,7 +232,7 @@ export const INITIAL_LIFE_MILESTONES: LifeMilestone[] = [
     targetAmountINR: 6000000,
     targetAmountUSD: 70500,
     category: 'Education',
-    emoji: '🎓',
+    emoji: 'GraduationCap',
   },
   {
     id: 'milestone-6',
@@ -241,7 +241,7 @@ export const INITIAL_LIFE_MILESTONES: LifeMilestone[] = [
     targetAmountINR: 25000000,
     targetAmountUSD: 294000,
     category: 'Freedom',
-    emoji: '🌴',
+    emoji: 'Compass',
   },
 ];
 

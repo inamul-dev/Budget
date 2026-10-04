@@ -1,5 +1,5 @@
 import React from 'react';
-import { Download, Printer, X, FileText, CheckCircle2, Shield } from 'lucide-react';
+import { Download, Printer, X, FileText, CheckCircle2, Shield, Calendar, BarChart3, Layers, Lock } from 'lucide-react';
 import { Currency, Transaction } from '../types';
 import { exportTransactionsToCSV, formatCurrency, getConvertedAmount } from '../utils/formatters';
 
@@ -91,35 +91,38 @@ export const ExportModal: React.FC<ExportModalProps> = ({
             <button
               type="button"
               onClick={() => setExportSource('monthly')}
-              className={`py-1.5 px-2 text-xs font-bold rounded-lg transition cursor-pointer ${
+              className={`py-1.5 px-2 text-xs font-bold rounded-lg transition cursor-pointer flex items-center justify-center gap-1.5 ${
                 exportSource === 'monthly'
                   ? 'bg-white text-emerald-700 shadow-xs'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              📅 Monthly ({monthlyTransactions.length})
+              <Calendar className="w-3.5 h-3.5 text-emerald-600" />
+              <span>Monthly ({monthlyTransactions.length})</span>
             </button>
             <button
               type="button"
               onClick={() => setExportSource('yearly')}
-              className={`py-1.5 px-2 text-xs font-bold rounded-lg transition cursor-pointer ${
+              className={`py-1.5 px-2 text-xs font-bold rounded-lg transition cursor-pointer flex items-center justify-center gap-1.5 ${
                 exportSource === 'yearly'
                   ? 'bg-white text-blue-700 shadow-xs'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              📊 Yearly ({yearlyTransactions.length})
+              <BarChart3 className="w-3.5 h-3.5 text-blue-600" />
+              <span>Yearly ({yearlyTransactions.length})</span>
             </button>
             <button
               type="button"
               onClick={() => setExportSource('both')}
-              className={`py-1.5 px-2 text-xs font-bold rounded-lg transition cursor-pointer ${
+              className={`py-1.5 px-2 text-xs font-bold rounded-lg transition cursor-pointer flex items-center justify-center gap-1.5 ${
                 exportSource === 'both'
                   ? 'bg-white text-purple-700 shadow-xs'
                   : 'text-slate-600 hover:text-slate-900'
               }`}
             >
-              Combined All
+              <Layers className="w-3.5 h-3.5 text-purple-600" />
+              <span>Combined All</span>
             </button>
           </div>
         </div>
@@ -199,8 +202,9 @@ export const ExportModal: React.FC<ExportModalProps> = ({
           </div>
         </div>
 
-        <div className="text-center text-[11px] text-slate-700 pt-1">
-          🔒 All financial exports are computed locally on your device for strict confidentiality.
+        <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-500 pt-1">
+          <Lock className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+          <span>All financial exports are computed locally on your device for strict confidentiality.</span>
         </div>
       </div>
     </div>
